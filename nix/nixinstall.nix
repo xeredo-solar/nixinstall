@@ -6,7 +6,19 @@
 , pkgconfig
 , cmake
 , distinst
+, desktop-file-utils
+, gettext
+, libgnomekbd
+, pantheon
+, libgee
+, glib
+, gobject-introspection
+, json-glib
+, libpwquality
+, libxml2
+, wrapGAppsHook
 }:
+
 
 stdenv.mkDerivation {
   pname = "nixinstall";
@@ -16,13 +28,24 @@ stdenv.mkDerivation {
 
   nativeBuildInputs = [
     meson
+    desktop-file-utils
+    gettext
     ninja
-    vala
     pkgconfig
     cmake
+    wrapGAppsHook
   ];
 
   buildInputs = [
+    pantheon.granite
+    glib
+    json-glib
+    gobject-introspection
+    libpwquality
+    libgnomekbd
+    libxml2
+    vala
+    libgee
     gtk3
     distinst
   ];
