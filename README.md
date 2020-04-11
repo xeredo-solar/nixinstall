@@ -6,6 +6,12 @@
 
 An installer for open-source operating systems. See the [wiki](https://github.com/elementary/installer/wiki) for goals, design spec, user flow, and details about each step.
 
+## NixOS
+
+Run `nix-build -A nixinstall && sudo result/bin/io.elementary.installer --test` to build & test the installer
+
+Note: It is running in test mode, meaning you can't break stuff, but root is needed to list the drives
+
 ## Building, Testing, and Installation
 
 You'll need the following dependencies:
