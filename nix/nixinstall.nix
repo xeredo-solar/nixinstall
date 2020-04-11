@@ -19,6 +19,7 @@
 , wrapGAppsHook
 , isocodes
 , xkeyboard_config
+, slideshowPackage ? false
 }:
 
 
