@@ -17,6 +17,8 @@
 , libpwquality
 , libxml2
 , wrapGAppsHook
+, isocodes
+, xkeyboard_config
 }:
 
 
@@ -52,6 +54,11 @@ stdenv.mkDerivation rec {
 
   preConfigure = ''
     export LIBRARY_PATH="$LIBRARY_PATH:${libgnomekbd}/lib"
+  '';
+
+  postPatch = ''
+    sed "s|/usr/share/iso-codes|${isocodes}/share/iso-codes|g" -i ./src/Helpers/LocaleHelper.vala
+    sed "s|/usr/share/X11/xkb|${xkeyboard_config}/share/X11/xkb|g" -i ./src/Helpers/KeyboardLayoutHelper.vala
   '';
 
   shellHook = preConfigure;
