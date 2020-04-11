@@ -20,7 +20,7 @@
 }:
 
 
-stdenv.mkDerivation {
+stdenv.mkDerivation rec {
   pname = "nixinstall";
   version = "0.0.1";
 
@@ -49,4 +49,10 @@ stdenv.mkDerivation {
     gtk3
     distinst
   ];
+
+  preConfigure = ''
+    export LIBRARY_PATH="$LIBRARY_PATH:${libgnomekbd}/lib"
+  '';
+
+  shellHook = preConfigure;
 }
