@@ -8,9 +8,21 @@ An installer for open-source operating systems. See the [wiki](https://github.co
 
 ## NixOS
 
-Run `nix-build -A nixinstall && sudo result/bin/io.elementary.installer --test` to build & test the installer
+Run this to build & test the installer
+
+```
+# build
+nix-build -A nixinstall
+# test
+nix run meros.conf-tool
+sudo result/bin/io.elementary.installer --test
+```
 
 Note: It is running in test mode, meaning you can't break stuff, but root is needed to list the drives
+
+If you're cautious enough, you can remove the --test flag and install to an USB drive to test a full installation
+
+Debug logs get printed to stdout
 
 ## Building, Testing, and Installation
 
@@ -49,4 +61,3 @@ You can also use `--test` mode for development to disable destructive behaviors 
 For debug messages, set the `G_MESSAGES_DEBUG` environment variable, e.g. to `all`:
 
     G_MESSAGES_DEBUG=all io.elementary.installer
-
