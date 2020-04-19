@@ -5,7 +5,6 @@
 , vala
 , gtk3
 , pkgconfig
-, cmake
 , distinst
 , desktop-file-utils
 , gettext
@@ -13,7 +12,6 @@
 , pantheon
 , libgee
 , glib
-, gobject-introspection
 , json-glib
 , libpwquality
 , libxml2
@@ -23,7 +21,6 @@
 , xkeyboard_config
 , slideshowPackage ? false
 }:
-
 
 stdenv.mkDerivation rec {
   pname = "nixinstall";
@@ -39,37 +36,36 @@ stdenv.mkDerivation rec {
   ];
 
   nativeBuildInputs = [
-    meson
     desktop-file-utils
     gettext
+    meson
     ninja
     pkgconfig
-    cmake
+    vala
     wrapGAppsHook
   ];
 
   buildInputs = [
-    pantheon.granite
-    glib
-    json-glib
-    gobject-introspection
-    libpwquality
-    libgnomekbd
-    libxml2
-    vala
-    libgee
-    gtk3
     distinst
+    glib
+    gtk3
+    isocodes
+    json-glib
+    libgee
+    libgnomekbd
+    libpwquality
+    libxml2
+    pantheon.granite
+    xkeyboard_config
   ];
 
-  preConfigure = ''
-    export LIBRARY_PATH="$LIBRARY_PATH:${libgnomekbd}/lib"
-  '';
+  doCheck = true;
 
-  postPatch = ''
-    sed "s|/usr/share/iso-codes|${isocodes}/share/iso-codes|g" -i ./src/Helpers/LocaleHelper.vala
-    sed "s|/usr/share/X11/xkb|${xkeyboard_config}/share/X11/xkb|g" -i ./src/Helpers/KeyboardLayoutHelper.vala
-  '';
-
-  shellHook = preConfigure;
+  meta = with stdenv.lib; {
+    description = "NixOS Installer based on the elementary OS installer";
+    homepage = "https://github.com/mercode-org/nixinstall";
+    license = licenses.gpl3Plus;
+    maintainers = with maintainers; [ worldofpeace mkg20001 ];
+    platforms = platforms.linux;
+  };
 }
