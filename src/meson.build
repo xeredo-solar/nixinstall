@@ -1,4 +1,3 @@
-
 vala_files = [
     'Application.vala',
     'MainWindow.vala',
@@ -34,6 +33,16 @@ vala_files = [
 configuration_data = configuration_data()
 configuration_data.set('GETTEXT_PACKAGE', meson.project_name())
 configuration_data.set('LANG_LIST', get_option('supported_languages'))
+
+xkbconf = dependency('xkeyboard-config')
+xkb_base = xkbconf.get_pkgconfig_variable('xkb_base')
+configuration_data.set('XKB_BASE', xkb_base)
+
+isocodes = dependency('iso-codes')
+isocodes_prefix = isocodes.get_pkgconfig_variable('prefix')
+isocodes_location = join_paths(isocodes_prefix, get_option('datadir'), 'iso-codes', 'json')
+configuration_data.set('ISO_CODES_LOCATION', isocodes_location)
+
 configuration_data.set('PREFERRED_LANG_LIST', get_option('preferred_languages'))
 
 config_file = configure_file(
