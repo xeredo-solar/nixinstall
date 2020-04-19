@@ -6,28 +6,27 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    
-    container:
-      image: elementary/docker:unstable
-    
+
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Dependencies
-      run: |
-        apt update
-        apt install -y desktop-file-utils gettext libdistinst-dev libgtk-3-dev libgee-0.8-dev libgranite-dev libxml2-dev libjson-glib-dev libgnomekbd-dev libpwquality-dev libxml2-utils meson valac
-    - name: Build
-      run: |
-        meson build
-        ninja -C build
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Nix
+        uses: cachix/install-nix-action@v8
+      - name: Cachix
+        uses: cachix/cachix-action@v5
+        with:
+          name: meros
+          skipNixBuild: true
+      - name: Build
+        run: 'nix-build --quiet -I nixpkgs=https://github.com/mkg20001/nixpkgs/archive/mkg-patch.tar.gz -A nixinstall'
 
   lint:
 
     runs-on: ubuntu-latest
-    
+
     container:
       image: valalang/lint
-      
+
     steps:
     - uses: actions/checkout@v1
     - name: Lint
