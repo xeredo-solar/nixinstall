@@ -1,0 +1,13 @@
+diff --git a/src/Views/PartitioningView.vala b/src/Views/PartitioningView.vala
+index 48d7a58..62e012b 100644
+--- a/src/Views/PartitioningView.vala
++++ b/src/Views/PartitioningView.vala
+@@ -158,7 +158,7 @@ public class Installer.PartitioningView : AbstractInstallerView {
+              * GLib.AppInfo. However, we need a better way to listen to
+              * partition changes if we do that.
+              */
+-            var gparted = new GLib.Subprocess.newv ({"gparted"}, GLib.SubprocessFlags.NONE);
++            var gparted = new GLib.Subprocess.newv ({"@gparted@"}, GLib.SubprocessFlags.NONE);
+             gparted.wait ();
+         } catch (GLib.Error error) {
+             critical ("could not execute gparted");

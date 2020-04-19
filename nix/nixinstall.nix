@@ -1,4 +1,5 @@
 { stdenv
+, substituteAll
 , meson
 , ninja
 , vala
@@ -16,6 +17,7 @@
 , json-glib
 , libpwquality
 , libxml2
+, gparted
 , wrapGAppsHook
 , isocodes
 , xkeyboard_config
@@ -27,7 +29,14 @@ stdenv.mkDerivation rec {
   pname = "nixinstall";
   version = "0.0.1";
 
-  src = ./..;
+  src = stdenv.lib.cleanSource ./..;
+
+  patches = [
+    (substituteAll {
+      src = ./fix-paths.patch;
+      gparted = "${gparted}/bin/gparted";
+    })
+  ];
 
   nativeBuildInputs = [
     meson
