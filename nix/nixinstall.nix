@@ -63,7 +63,7 @@ stdenv.mkDerivation rec {
 
   meta = with stdenv.lib; {
     description = "NixOS Installer based on the elementary OS installer";
-    homepage = "https://github.com/mercode-org/nixinstall";
+    homepage = "https://github.com/ssd-solar/nixinstall";
     license = licenses.gpl3Plus;
     maintainers = with maintainers; [ worldofpeace mkg20001 ];
     platforms = platforms.linux;
