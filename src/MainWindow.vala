@@ -62,7 +62,7 @@ public class Installer.MainWindow : Gtk.Window {
         get_style_context ().add_class ("rounded");
         set_titlebar (titlebar);
 
-        minimum_disk_size = Distinst.minimum_disk_size (5000000000);
+        minimum_disk_size = Distinst.minimum_disk_size (8589934592); // 2^33, 8GB
 
         language_view.next_step.connect (() => load_keyboard_view ());
     }
