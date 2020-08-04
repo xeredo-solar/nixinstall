@@ -61,6 +61,10 @@ stdenv.mkDerivation rec {
 
   doCheck = true;
 
+  postInstall = ''
+    wrapProgram $out/bin/io.elementary.installer --prefix PATH : ${stdenv.lib.makeBinPath distinst.tools}
+  '';
+
   meta = with stdenv.lib; {
     description = "NixOS Installer based on the elementary OS installer";
     homepage = "https://github.com/ssd-solar/nixinstall";
