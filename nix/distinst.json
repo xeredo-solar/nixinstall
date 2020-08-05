@@ -1,7 +1,7 @@
 {
     "owner": "ssd-solar",
     "repo": "distinst",
-    "rev": "ea1fcb6c932baa4a94930ef458cdfab62b1b78d5",
-    "sha256": "163i40gvhpplkqiqc7rgxmwqk7sgwmg352pdjzn98qqbbh0apg3r",
+    "rev": "1cabc15b49bfb8a472fead32d17622036a6946e1",
+    "sha256": "11y0idxmf73lr32kg743h6nlmfxpklndqlkqc76pir2q1nr2dyw1",
     "fetchSubmodules": false
 }
